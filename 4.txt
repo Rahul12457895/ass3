@@ -1,0 +1,54 @@
+class Node:
+    def __init__(self,data):
+        self.left = None
+        self.data = data
+        self.right = None
+        
+    def show(self,data):
+        if self.data > data:
+            if self.left:
+                print(self.left.show(data))
+            else:
+                self.left = Node(data)
+        elif self.data == data:
+            return
+        else:
+            if self.right:
+                print(self.right.show(data))
+            else:
+                self.right = Node(data)
+    
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+            
+        print(self.data)
+        
+        if self.right:
+            self.right.PrintTree()
+            
+def printLeafNodes(root):
+    if (not root):
+        return
+    if (not root.left and
+        not root.right):
+        print(root.data,
+              end = " ")
+        return
+    if root.left:
+        printLeafNodes(root.left)
+    if root.right:
+        printLeafNodes(root.right)
+        
+root = Node(100)
+
+root.show(22)
+root.show(2)
+root.show(220)
+root.show(234)
+root.show(236)
+root.show(6)
+root.show(1)
+root.PrintTree()
+print("all leaves of a binary tree-->")
+printLeafNodes(root)

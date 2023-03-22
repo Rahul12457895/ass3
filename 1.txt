@@ -1,0 +1,39 @@
+# Binary Tree
+
+class Node:
+    def __init__(self,data):
+        self.left = None
+        self.data = data
+        self.right = None
+        
+    def show(self,data):
+        if self.data > data:
+            if self.left:
+                print(self.left.show(data))
+            else:
+                self.left = Node(data)
+        elif self.data == data:
+            return
+        else:
+            if self.right:
+                print(self.right.show(data))
+            else:
+                self.right = Node(data)
+    
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+            
+        print(self.data)
+        
+        if self.right:
+            self.right.PrintTree()
+        
+root = Node(100)
+
+root.show(22)
+root.show(2)
+root.show(220)
+root.show(234)
+root.show(6)
+root.PrintTree()

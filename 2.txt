@@ -1,0 +1,53 @@
+# Height of given tree
+
+class Node:
+    def __init__(self,data):
+        self.left = None
+        self.data = data
+        self.right = None
+        
+    def show(self,data):
+        if self.data > data:
+            if self.left:
+                print(self.left.show(data))
+            else:
+                self.left = Node(data)
+        elif self.data == data:
+            return
+        else:
+            if self.right:
+                print(self.right.show(data))
+            else:
+                self.right = Node(data)
+    
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+            
+        print(self.data)
+        
+        if self.right:
+            self.right.PrintTree()
+            
+def maxDepth(node):
+    if node is None:
+        return 0
+    else:
+        lDepth = maxDepth(node.left)
+        rDepth = maxDepth(node.right)
+        if (lDepth > rDepth):
+            return lDepth+1
+        else:
+            return rDepth+1
+        
+root = Node(100)
+
+root.show(22)
+root.show(2)
+root.show(220)
+root.show(234)
+root.show(236)
+root.show(6)
+root.show(1)
+root.PrintTree()
+print("Height of tree is %d" % (maxDepth(root)))
